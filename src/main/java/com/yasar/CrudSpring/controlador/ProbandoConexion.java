@@ -24,4 +24,8 @@ public class ProbandoConexion {
             return "Error al conectar con la base de datos " + e.getMessage();
         }
     }
+    @GetMapping("/")
+    public String index(){
+        return "Esto es el home";
+    }
 }
