@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Crud Usuarios</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+        <link th:href="@{/styles/estilos.css}" rel="stylesheet" />
+        <link href="../static/styles/estilos.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Nuevo Usuario -->
+        <h2>Crear Usuario</h2>
+        <form action="/guardarusuarios" method="post">
+            <label>ID</label>
+            <input type="text" readonly />
+            <label>Nombres</label>
+            <input type="text" name="nombres" required />
+            <label>Apellidos</label>
+            <input type="text" name="apellidos" required />
+            <button type="submit">Guardar 💾</button>
+        </form>
+        <br />
+        <!-- Editar Usuario -->
+        <h2>Modificar Usuario</h2>
+        <form action="/actualizarusuarios" method="post">
+            <label>ID</label>
+            <input type="text" id="idActualizar" name="id" readonly />
+            <label>Nombres</label>
+            <input type="text" id="nombresActualizar" name="nombres" />
+            <label>Apellidos</label>
+            <input type="text" id="apellidosActualizar" name="apellidos" />
+            <button type="submit">Modificar 🖊</button>
+        </form>
+        <br />
+        <!-- Eliminar Usuario -->
+        <h2>Eliminar Usuario</h2>
+        <form action="/eliminarusuarios" method="post">
+            <label>ID</label>
+            <input type="text" id="idEliminar" name="id" readonly />
+            <label>Nombres</label>
+            <input type="text" id="nombresEliminar" name="nombres" />
+            <label>Apellidos</label>
+            <input type="text" id="apellidosEliminar" name="apellidos" />
+            <button type="submit">Eliminar 💾</button>
+        </form>
+        <br />
+
+        <h2>Lista de Usuarios</h2>
+        <table id="mitabla">
+            <tr>
+                <th>ID</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Accion</th>
+            </tr>
+            <tbody>
+                <tr th:each="user : ${usuariosParaFront}">
+                    <td th:text="${user.id}"></td>
+                    <td th:text="${user.nombres}"></td>
+                    <td th:text="${user.apellidos}"></td>
+                    <td><input type="submit" value="🖊" onclick="seleccionarModificar()" /></td>
+                    <td><input type="submit" value="🗑" onclick="seleccionarEliminar()" /></td>
+                </tr>
+            </tbody>
+        </table>
+        <h6 class="pie">By Yasar</h6>
+        <script src="ManejoUsuarios.js"></script>
+    </body>
+</html>
